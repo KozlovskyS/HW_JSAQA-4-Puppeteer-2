@@ -55,7 +55,7 @@ describe("GoToCinema tests", () => {
   test("Successful VIP ticket booking", async () => {
     const choiceDay = ".page-nav > a:nth-child(3)"; // выбор дня - 3-й день от сегодня
     const choiceHall = ".movie-seances__time[href='#'][data-seance-id='199']"; // ЗалЗал90 "Сталкер"
-    const choiceSeat = "div:nth-child(4) span:nth-child(6)"; //ряд 3 место 6
+    const choiceSeat = "div:nth-child(4) span:nth-child(6)"; //ряд 4 место 6
     await clickElement(page, choiceDay);
     await clickElement(page, choiceHall);
     await page.waitForSelector(".buying__info");

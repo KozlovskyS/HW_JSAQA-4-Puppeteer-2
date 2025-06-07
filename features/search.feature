@@ -1,5 +1,8 @@
-Feature: Search a course
-    Scenario: Should search by text
-        Given user is on "/navigation" page
-        When user search by "тестировщик"
-        Then user sees the course suggested "Тестировщик ПО"
+Feature: GoToCinema tests
+    Scenario: Successful standart ticket booking
+        Given user is on booking page
+        When user choice day
+        When user choice hall 
+        When user choice seat
+        When user click on button booking
+        Then user sees the text "Вы выбрали билеты"
