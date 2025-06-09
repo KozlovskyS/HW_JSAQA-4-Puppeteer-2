@@ -34,7 +34,7 @@ When(
   "user choice day {string}",
   { wrapperOptions: { retry: 1 }, timeout: 40000 },
   async function (string) {
-    const choiceDay = `.page-nav > a:nth-child('${string}')`; // выбор дня  от сегодня
+    const choiceDay = `.page-nav > a:nth-child(${string})`; // выбор дня  от сегодня
     return await clickElement(this.page, choiceDay);
   },
   10000
