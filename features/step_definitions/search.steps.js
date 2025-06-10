@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const chai = require("chai");
 const expect = chai.expect;
 const { Given, When, Then, Before, After } = require("cucumber");
-const { putText, getText } = require("../../lib/commands.js");
+const { clickElement, getText } = require("../../lib/commands.js");
 
 Before(async function () {
   const browser = await puppeteer.launch({ headless: false, slowMo: 100 });
@@ -34,7 +34,7 @@ When(
   "user choice day {string}",
   { wrapperOptions: { retry: 1 }, timeout: 40000 },
   async function (string) {
-    const choiceDay = `.page-nav > a:nth-child(${string})`; // выбор дня  от сегодня
+    const choiceDay = `nav.page-nav > a:nth-child(${string})`; // выбор дня  от сегодня
     return await clickElement(this.page, choiceDay);
   },
   10000
@@ -59,12 +59,11 @@ Then("user sees the text {string}", async function (mess) {
   const expected = mess;
   const actual = await getText(this.page, ".ticket__check-title");
 
-  await expect(actual).toContain(expected);
+  await expect(actual).to.have.string(expected);
 });
 
 Then("user sees disabled button {string}", async function (string) {
-  const expected = true;
   const actual = await this.page.$eval(`${string}`, (btn) => btn.disabled);
 
-  await expect(actual).toBe(expected);
+  await expect(actual).to.be.true;
 });
